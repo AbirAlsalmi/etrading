@@ -1,0 +1,448 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #D4AF37;
+  --primary-dark: #B8960C;
+  --primary-light: #FFD700;
+  --background: #fafafa;
+  --foreground: #1e293b;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --gradient-start: #D4AF37;
+  --gradient-end: #B8960C;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --gradient-start: #FFD700;
+    --gradient-end: #D4AF37;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(29, 78, 216, 0.05), transparent 40%);
+}
+
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="ltr"] {
+  text-align: left;
+}
+
+.card {
+  @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl shadow-sm border border-gray-100/50 dark:border-gray-700/50 overflow-hidden transition-all duration-300;
+}
+
+.card:hover {
+  @apply transform -translate-y-1 shadow-lg border-yellow-100 dark:border-yellow-900;
+  box-shadow: 0 4px 20px -5px rgba(212, 175, 55, 0.2);
+}
+
+.section-title {
+  @apply text-4xl font-bold text-center mb-16 relative pb-6;
+}
+
+.section-title::after {
+  content: '';
+  @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-0.5 rounded-full;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--primary) 50%, 
+    transparent 100%
+  );
+}
+
+.service-icon {
+  @apply w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-md 
+         shadow-yellow-500/10 dark:shadow-yellow-500/5 transition-transform duration-300;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+}
+
+.service-icon svg {
+  @apply w-8 h-8 text-white transition-transform duration-300;
+}
+
+.card:hover .service-icon {
+  @apply scale-110;
+}
+
+.card:hover .service-icon svg {
+  @apply scale-110;
+}
+
+.gradient-text {
+  @apply font-extrabold bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+}
+
+.achievement-card {
+  @apply relative overflow-hidden rounded-2xl;
+  height: 400px; /* Taller cards to show more of the image */
+}
+
+.achievement-card-image {
+  @apply object-cover transition-transform duration-500;
+}
+
+.achievement-card-content {
+  @apply absolute inset-0 flex flex-col justify-end items-center p-8 text-center;
+  background: linear-gradient(
+    to top,
+    rgba(30, 41, 59, 0.95) 0%,
+    rgba(30, 41, 59, 0.8) 30%,
+    rgba(30, 41, 59, 0.1) 100%
+  );
+}
+
+.achievement-card h3 {
+  @apply text-white font-bold text-xl mb-3 transform translate-y-4 transition-transform duration-300;
+}
+
+.achievement-card p {
+  @apply text-gray-200 text-base transform translate-y-4 transition-all duration-300 delay-75 leading-relaxed;
+}
+
+.achievement-card:hover .achievement-card-image {
+  @apply scale-110;
+}
+
+.achievement-card:hover .achievement-card-content {
+  background: linear-gradient(
+    to top,
+    rgba(30, 41, 59, 0.98) 0%,
+    rgba(30, 41, 59, 0.9) 30%,
+    rgba(30, 41, 59, 0.2) 100%
+  );
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-50 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500/30 rounded-full transition-colors duration-200;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-600/40;
+}
+
+.header-section {
+  @apply relative min-h-[70vh] flex flex-col items-center justify-center px-4 py-20;
+  background-image: 
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.2), rgba(30, 41, 59, 0.1)),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.header-content {
+  @apply relative z-10 text-center;
+}
+
+.company-title {
+  @apply text-5xl md:text-7xl font-bold mb-8;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.company-subtitle {
+  @apply text-xl md:text-3xl text-gray-600 dark:text-gray-300 font-medium text-center mx-auto max-w-3xl;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.header-decoration {
+  @apply absolute inset-0 overflow-hidden pointer-events-none;
+}
+
+.header-decoration::before {
+  content: '';
+  @apply absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-full;
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0) 70%
+  );
+}
+
+.header-decoration::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-24;
+  background: linear-gradient(to bottom, transparent, var(--background));
+}
+
+/* Section Styling */
+.section-wrapper {
+  @apply relative z-10 -mt-20 px-4;
+}
+
+/* Who We Are Section */
+.who-we-are {
+  @apply relative overflow-hidden;
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.05) 0%, 
+    rgba(212, 175, 55, 0.02) 100%
+  );
+}
+
+.who-we-are::before {
+  content: '';
+  @apply absolute top-0 right-0 w-[500px] h-[500px] -translate-y-1/2 translate-x-1/2 rounded-full blur-3xl;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+}
+
+.who-we-are::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-[300px] h-[300px] translate-y-1/2 -translate-x-1/2 rounded-full blur-2xl;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+}
+
+.section-card {
+  @apply relative backdrop-blur-sm rounded-3xl p-12 border border-gray-100/20 dark:border-gray-700/20 
+         bg-white/90 dark:bg-gray-800/90 shadow-xl shadow-blue-500/5;
+}
+
+.section-card .content-wrapper {
+  @apply relative z-10 space-y-8 text-center;
+}
+
+.section-card .highlight-text {
+  @apply text-2xl font-medium text-blue-600 dark:text-blue-400 mb-4 text-center;
+}
+
+.section-card .description {
+  @apply text-lg leading-relaxed text-gray-600 dark:text-gray-300 text-center;
+}
+
+/* Vision Section */
+.vision-section {
+  @apply relative;
+}
+
+.vision-card {
+  @apply relative overflow-hidden bg-gradient-to-br from-blue-50/90 to-white/90 
+         dark:from-gray-800/90 dark:to-gray-900/90;
+}
+
+.vision-content {
+  @apply relative z-10 p-10 rounded-2xl space-y-8;
+}
+
+.vision-decoration {
+  @apply absolute inset-0 overflow-hidden;
+}
+
+.vision-decoration::before {
+  content: '';
+  @apply absolute top-0 right-0 w-[400px] h-[400px] -translate-y-1/2 translate-x-1/2 rounded-full blur-2xl;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+}
+
+.vision-decoration::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-[400px] h-[400px] translate-y-1/2 -translate-x-1/2 rounded-full blur-2xl;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+}
+
+.vision-text {
+  @apply relative text-lg leading-relaxed text-center;
+}
+
+.vision-text::before {
+  content: '"';
+  @apply absolute -right-8 -top-4 text-6xl font-serif;
+  color: rgba(212, 175, 55, 0.2);
+}
+
+.vision-highlight {
+  @apply font-medium;
+  color: var(--primary);
+}
+
+/* Enhanced Section Title */
+.section-title-wrapper {
+  @apply relative mb-12 pt-8;
+}
+
+.section-title {
+  @apply text-4xl font-bold text-center relative pb-6 mb-4;
+}
+
+.section-title::before {
+  content: '';
+  @apply absolute -top-6 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10 blur-2xl;
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+}
+
+.section-title::after {
+  content: '';
+  @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-0.5 rounded-full;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--primary) 50%, 
+    transparent 100%
+  );
+}
+
+.section-subtitle {
+  @apply text-center text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto;
+}
+
+/* Services Section */
+.services-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 relative;
+}
+
+.service-card {
+  @apply card p-8 hover:bg-gradient-to-br from-blue-50/50 to-transparent 
+         dark:hover:from-blue-900/20 dark:hover:to-transparent;
+}
+
+.service-title {
+  @apply text-xl font-bold mb-6 text-center bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+}
+
+/* Update service list styling */
+.service-list {
+  @apply space-y-3;
+}
+
+.service-list li {
+  @apply flex items-center justify-start gap-3 text-gray-600 dark:text-gray-300 transition-all duration-200 hover:text-yellow-600 dark:hover:text-yellow-400 text-right;
+}
+
+.service-list li::before {
+  content: '';
+  @apply w-2 h-2 rounded-full flex-shrink-0 order-first ml-2;
+  background-color: var(--primary);
+}
+
+.service-list.animated li {
+  @apply opacity-0;
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+.service-list.animated li:nth-child(1) { animation-delay: 0.1s; }
+.service-list.animated li:nth-child(2) { animation-delay: 0.2s; }
+.service-list.animated li:nth-child(3) { animation-delay: 0.3s; }
+.service-list.animated li:nth-child(4) { animation-delay: 0.4s; }
+.service-list.animated li:nth-child(5) { animation-delay: 0.5s; }
+.service-list.animated li:nth-child(6) { animation-delay: 0.6s; }
+.service-list.animated li:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced service card styling */
+.service-card {
+  @apply card p-8 hover:bg-gradient-to-br from-blue-50/50 to-transparent 
+         dark:hover:from-blue-900/20 dark:hover:to-transparent;
+}
+
+.service-card-content {
+  @apply mt-6 space-y-4 text-right pr-4;
+}
+
+.service-description {
+  @apply text-gray-600 dark:text-gray-300 leading-relaxed;
+}
+
+/* Logo Animation */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Logo Glow Effect */
+.logo-glow {
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.logo-glow:hover {
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+}
+
+/* Logo Container in Cards */
+.logo-container {
+  @apply relative flex items-center justify-center;
+}
+
+.logo-container::before {
+  content: '';
+  @apply absolute inset-0 bg-blue-500/5 rounded-full blur-xl transform scale-150;
+}
+
+/* Service Card Logo */
+.service-card .service-icon {
+  @apply relative;
+}
+
+.service-card .service-icon::after {
+  content: '';
+  @apply absolute inset-0 bg-blue-500/20 rounded-2xl blur-lg transform scale-150 opacity-0 transition-opacity duration-300;
+}
+
+.service-card:hover .service-icon::after {
+  @apply opacity-100;
+}
+
+/* Add these base text alignment styles */
+.text-center-all {
+  @apply text-center;
+}
+
+/* Style for English text */
+.english-text {
+  @apply text-gray-400 dark:text-gray-500 text-sm;
+  direction: ltr;
+}
